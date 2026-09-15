@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <!-- ══════════════════════════════════════════════════════════════════
-  PLC 电气自动化 · 求职作品集模板
+  PLC / SolidWorks / 机电概念设计 · 求职作品集（公网部署版）
   ──────────────────────────────────────────────────────────────────
   【替换指南】
-  1. 姓名 / 学校 / 简介 / 联系方式：搜索「李帅」「西华大学」「17628422601」
-     「2358425277@qq.com」等占位文字，逐处替换为你的真实信息。
-  2. 项目作品：页面底部 <script> 里的 PROJECTS 数组，一条对应一个项目，
-     替换 title / img / tags / desc 与 detail 即可，图片放到 assets/ 目录。
-  3. 技能、证书、经历：同文件里 SKILLS / CERTS / TIMELINE 数组，直接改。
-  4. 项目图片：把图片放进 assets/ 文件夹，文件名对应 PROJECTS 里的 img 字段。
-  5. 简历文件：把 PDF 命名为 https://aka.doubaocdn.com/s/l52TpRJXtS 放进 site/ 文件夹，下载按钮即生效。
+  1. 联系方式：搜索「李帅」「17628422601」「2358425277@qq.com」逐处替换。
+  2. PLC 作品：<script> 里 PLC_PROJECTS 数组，一条对应一个项目；
+     video 放 videos/ 目录，poster 封面放 assets/ 目录。
+  3. SolidWorks 案例：assets/cases/ 目录下的图片，页面自动按 01-21 命名展示。
+  4. 简历文件：命名 resume.pdf 放进 site/ 目录，下载按钮即生效。
   ══════════════════════════════════════════════════════════════════ -->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>李帅 · PLC 电气自动化工程师 · 作品集</title>
+<title>李帅 · PLC / SolidWorks / 机电概念设计 · 作品集</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ════════════ 设计系统：电气工程图纸世界 ════════════ */
 :root{
-  /* 四槽色板：图纸冷灰底 / 墨线深蓝 / 工业标注黄 / 文字墨色 */
   --canvas:#EBEEF1;
   --paper:#E2E6EA;
   --ink:#17222E;
@@ -34,20 +31,17 @@
   --bone:#EDF0F3;           /* 深色段上的暖白文字 */
   --bone-dim:rgba(237,240,243,.62);
 
-  /* 字阶：名字 140px / 段题 44px / 正文 16px，断崖 8.75× */
-  --display:clamp(64px,11vw,150px);
-  --h1:clamp(34px,4.6vw,64px);
-  --h2:clamp(26px,3.2vw,44px);
+  --display:clamp(56px,9vw,128px);
+  --h1:clamp(30px,4.2vw,58px);
+  --h2:clamp(25px,3.2vw,42px);
   --body:16px;
   --meta:11px;
 
-  /* 圆角：图纸直角感，只有可点的才圆 */
   --r-shell:22px;
   --r-card:10px;
   --r-control:6px;
   --r-pill:999px;
 
-  /* 阴影：三层有色影，色相跟随墨蓝 */
   --shadow-card:0 1px 2px rgba(23,34,46,.05),0 12px 28px -10px rgba(23,34,46,.10),0 36px 70px -30px rgba(23,34,46,.16);
   --shadow-lift:0 2px 4px rgba(23,34,46,.06),0 18px 40px -12px rgba(23,34,46,.14),0 50px 90px -36px rgba(23,34,46,.2);
 
@@ -67,7 +61,6 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ::selection{background:var(--accent);color:var(--ink)}
-/* 图纸坐标纸网格：全页极淡，铺在最底层 */
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(rgba(23,34,46,.033) 1px,transparent 1px),
     linear-gradient(90deg,rgba(23,34,46,.033) 1px,transparent 1px);
@@ -84,7 +77,7 @@ main,header,footer{position:relative;z-index:1}
 .sec-tag{display:inline-flex;align-items:center;gap:10px;color:var(--muted);margin-bottom:16px}
 .sec-tag::before{content:"";width:26px;height:1px;background:var(--accent)}
 .sec-head h2{font-size:var(--h2);font-weight:700;line-height:1.08;letter-spacing:-.015em}
-.sec-head p{margin-top:14px;max-width:52ch;color:var(--muted);font-size:15px}
+.sec-head p{margin-top:14px;max-width:58ch;color:var(--muted);font-size:15px}
 
 .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -121,7 +114,7 @@ nav a.active{opacity:1}
 .hamb.open i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ── Hero ── */
-.hero{position:relative;height:100svh;min-height:660px;overflow:hidden;background:var(--world)}
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:var(--world)}
 .hero-media{position:absolute;inset:-8% 0 -8% 0}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:58% 40%;
   transform:scale(1.06);animation:heroIn 2.6s var(--ease) both}
@@ -140,7 +133,6 @@ nav a.active{opacity:1}
 .hero-role h2{font-size:clamp(22px,3vw,34px);font-weight:500;color:var(--bone);letter-spacing:.01em}
 .hero-role .sep{width:44px;height:1px;background:rgba(237,240,243,.4)}
 .hero-role span.mono{color:rgba(237,240,243,.6)}
-.hero-claim{margin-top:18px;max-width:46ch;font-size:15px;line-height:1.85;color:rgba(237,240,243,.75)}
 .hero-actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:10px;border-radius:var(--r-pill);
   padding:15px 30px;font-size:14px;font-weight:600;letter-spacing:.03em;
@@ -150,8 +142,8 @@ nav a.active{opacity:1}
 .btn-solid:hover{background:var(--bone);color:var(--ink)}
 .btn-ghost{border:1px solid rgba(237,240,243,.45);color:var(--bone)}
 .btn-ghost:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
-.hero-spec{display:flex;gap:clamp(16px,3vw,34px);flex-wrap:wrap;margin-top:52px;
-  padding-top:22px;border-top:1px solid rgba(237,240,243,.18)}
+.hero-spec{display:flex;gap:clamp(14px,2.6vw,30px);flex-wrap:wrap;margin-top:46px;
+  padding-top:20px;border-top:1px solid rgba(237,240,243,.18)}
 .hero-spec span{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;
   color:rgba(237,240,243,.55)}
 
@@ -165,134 +157,107 @@ nav a.active{opacity:1}
   padding-right:44px;font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.1em}
 .marquee-track em{font-style:normal;color:var(--accent)}
 
-/* ── 关于 ── */
-.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,6vw,90px);align-items:center}
-@media(max-width:900px){.about{grid-template-columns:1fr}}
-.about-media{position:relative}
-.about-media img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-shell);
-  box-shadow:var(--shadow-card)}
-.about-media figcaption{position:absolute;left:-14px;bottom:26px;background:var(--ink);color:var(--bone);
-  border-radius:var(--r-control);padding:10px 16px;font-size:10px;letter-spacing:.18em;
-  box-shadow:var(--shadow-lift)}
-.about-copy h3{font-size:var(--h1);font-weight:700;line-height:1.05;letter-spacing:-.015em;margin-bottom:22px}
-.about-copy h3 em{font-style:normal;color:var(--accent);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
-.about-copy p{color:var(--ink2);max-width:56ch;font-size:15.5px;line-height:1.9}
-.about-copy p+p{margin-top:14px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
-@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{border-top:2px solid var(--ink);padding-top:14px}
-.stat b{display:block;font-family:"Space Mono",monospace;font-size:clamp(26px,3.4vw,42px);
-  font-weight:700;line-height:1;color:var(--ink)}
-.stat b i{font-style:normal;font-size:.5em;color:var(--muted);font-weight:400;margin-left:2px}
-.stat span{display:block;margin-top:8px;font-size:12px;letter-spacing:.1em;color:var(--muted)}
+/* ── 栏目块 ── */
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.pill{border:1px solid var(--line);border-radius:var(--r-pill);padding:8px 16px;font-size:12px;
+  color:var(--ink2);font-family:"Space Mono",monospace;letter-spacing:.08em}
 
-/* ── 技能（深色段） ── */
-.skills-sec{background:var(--world);color:var(--bone)}
-.skills-sec .sec-tag{color:var(--bone-dim)}
-.skills-sec .sec-head p{color:var(--bone-dim)}
-.skills-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,80px);align-items:start}
-@media(max-width:960px){.skills-grid{grid-template-columns:1fr}}
-.skill-item{padding:22px 0;border-top:1px solid rgba(237,240,243,.14)}
-.skill-item:first-child{border-top:0}
-.skill-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.skill-top .ic{color:var(--accent)}
-.skill-top h3{font-size:17px;font-weight:600}
-.skill-top .pct{margin-left:auto;font-family:"Space Mono",monospace;font-size:12px;color:var(--bone-dim)}
-.skill-top small{display:block;font-size:12px;color:var(--bone-dim);font-weight:400;margin-top:2px}
-.bar{height:4px;background:rgba(237,240,243,.12);border-radius:var(--r-pill);overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:var(--r-pill);
-  transition:width 1.2s var(--ease)}
-.skill-item.in .bar i{width:var(--w)}
-.skills-media{position:relative}
-.skills-media img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-shell)}
-.skills-media .badge{position:absolute;right:-12px;bottom:24px;background:var(--accent);color:var(--ink);
-  border-radius:var(--r-pill);padding:12px 20px;font-size:12px;font-weight:700;box-shadow:var(--shadow-lift)}
-.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.stack span{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;
-  border:1px solid rgba(237,240,243,.24);border-radius:var(--r-pill);padding:7px 13px;color:var(--bone-dim)}
-
-/* ── 作品 ── */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px}
-.chip{border:1px solid var(--line);border-radius:var(--r-pill);padding:9px 18px;font-size:13px;
-  color:var(--ink2);transition:all .28s var(--ease)}
-.chip:hover{border-color:var(--ink);color:var(--ink)}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
-.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:1180px){.projects{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:720px){.projects{grid-template-columns:1fr}}
-.projects.solo{grid-template-columns:1fr}
-.projects.solo .pcard{flex-direction:row;align-items:stretch}
-.projects.solo .pcard-media{width:44%;aspect-ratio:16/11;flex-shrink:0}
-.projects.solo .pcard-body{padding:26px 26px 20px}
-@media(max-width:720px){.projects.solo .pcard{flex-direction:column}.projects.solo .pcard-media{width:100%;aspect-ratio:4/3}}
-.pcard{background:var(--paper);border-radius:var(--r-card);overflow:hidden;cursor:pointer;
+/* ── 视频作品卡 ── */
+.vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:880px){.vgrid{grid-template-columns:1fr}}
+.vcard{background:var(--paper);border-radius:var(--r-card);overflow:hidden;
   box-shadow:var(--shadow-card);transition:transform .45s var(--ease),box-shadow .45s var(--ease);
   display:flex;flex-direction:column}
-.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift)}
-.pcard.hide{display:none}
-.pcard-media{position:relative;aspect-ratio:4/3;overflow:hidden}
-.pcard-media img{width:100%;height:100%;object-fit:cover;
-  transition:transform 1s var(--ease),filter .5s var(--ease)}
-.pcard:hover .pcard-media img{transform:scale(1.05)}
-.pcard-id{position:absolute;top:12px;left:12px;background:rgba(15,22,32,.82);color:var(--bone);
-  border-radius:var(--r-control);padding:5px 10px;font-size:10px;letter-spacing:.14em}
-.pcard-play{position:absolute;bottom:12px;left:12px;display:inline-flex;align-items:center;gap:6px;
-  background:var(--accent);color:var(--ink);border-radius:var(--r-pill);
-  padding:7px 12px;font-size:10.5px;font-weight:700;letter-spacing:.06em;
-  box-shadow:0 6px 18px rgba(10,14,19,.35);pointer-events:none}
-.pcard-play svg{width:12px;height:12px;fill:currentColor}
-.pcard-cat{position:absolute;top:12px;right:12px;background:var(--accent);color:var(--ink);
-  border-radius:var(--r-pill);padding:4px 11px;font-size:10px;letter-spacing:.1em;font-weight:700}
-.pcard-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.pcard-body h3{font-size:17px;font-weight:600;letter-spacing:-.005em}
-.pcard-body .desc{font-size:13px;color:var(--muted);line-height:1.65}
+.vcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift)}
+.vmedia{position:relative;background:#0A0E13;aspect-ratio:16/9}
+.vmedia video{width:100%;height:100%;object-fit:cover;display:block;background:#0A0E13}
+.vmedia .vid{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent);color:var(--ink);border-radius:var(--r-pill);padding:6px 12px;
+  font-size:10.5px;font-weight:700;letter-spacing:.06em;box-shadow:0 6px 18px rgba(10,14,19,.35);pointer-events:none}
+.vmedia .vid svg{width:11px;height:11px;fill:currentColor}
+.vmedia.img{aspect-ratio:16/9;overflow:hidden}
+.vmedia.img .zoom-wrap{position:absolute;inset:0}
+.vmedia.img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block}
+.vmedia.img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,14,19,0) 55%,rgba(10,14,19,.28) 100%)}
+.vbody{padding:20px 20px 22px;display:flex;flex-direction:column;gap:9px;flex:1}
+.vbody h3{font-size:18px;font-weight:600;letter-spacing:-.005em}
+.vbody .desc{font-size:13.5px;color:var(--muted);line-height:1.7}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:10px}
 .tags span{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.08em;
   border:1px solid var(--line);border-radius:var(--r-control);padding:4px 9px;color:var(--ink2)}
-.pcard-foot{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;
-  border-top:1px solid var(--line)}
-.pcard-foot .more{font-size:12px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
-.pcard-foot .more .ic{transition:transform .3s var(--ease)}
-.pcard:hover .pcard-foot .more .ic{transform:translate(3px,-3px)}
-.pcard-foot .mono{color:var(--muted)}
 
-/* ── 经历（深色时间线） ── */
-.exp-sec{background:var(--world);color:var(--bone)}
-.exp-sec .sec-tag{color:var(--bone-dim)}
-.timeline{position:relative;max-width:860px;margin-inline:auto}
-.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;
-  background:rgba(237,240,243,.2)}
-.tl-item{position:relative;padding:0 0 46px 44px}
-.tl-item:last-child{padding-bottom:0}
-.tl-item::before{content:"";position:absolute;left:0;top:6px;width:15px;height:15px;border-radius:50%;
-  background:var(--world);border:2px solid var(--accent);box-shadow:0 0 0 4px rgba(245,183,0,.14)}
-.tl-date{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-bottom:8px}
-.tl-item h3{font-size:19px;font-weight:600;margin-bottom:6px}
-.tl-item p{font-size:14px;color:var(--bone-dim);line-height:1.75;max-width:60ch}
-.tl-item .loc{display:inline-block;margin-top:10px;font-size:11px;letter-spacing:.1em;
-  border:1px solid rgba(237,240,243,.22);border-radius:var(--r-pill);padding:5px 12px;color:var(--bone-dim)}
+/* ── 深色栏目（SolidWorks / 联系） ── */
+.dark-sec{background:var(--world);color:var(--bone)}
+.dark-sec .sec-tag{color:var(--bone-dim)}
+.dark-sec .sec-head p{color:var(--bone-dim)}
+.dark-sec .vcard{background:#182330;box-shadow:0 1px 2px rgba(0,0,0,.2),0 12px 28px -10px rgba(0,0,0,.4)}
+.dark-sec .vcard:hover{box-shadow:0 2px 4px rgba(0,0,0,.25),0 18px 40px -12px rgba(0,0,0,.5),0 50px 90px -36px rgba(0,0,0,.6)}
+.dark-sec .vbody h3{color:var(--bone)}
+.dark-sec .vbody .desc{color:var(--bone-dim)}
+.dark-sec .tags span{border-color:rgba(237,240,243,.24);color:var(--bone-dim)}
 
-/* ── 证书 ── */
-.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:1180px){.certs{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.certs{grid-template-columns:1fr}}
-.cert{background:var(--paper);border-radius:var(--r-card);padding:24px 22px;
-  box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:10px;
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.cert:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
-.cert .ic{width:38px;height:38px;padding:9px;background:var(--ink);color:var(--accent);
-  border-radius:var(--r-control)}
-.cert h3{font-size:15px;font-weight:600;line-height:1.4}
-.cert .who{font-size:12.5px;color:var(--muted)}
-.cert .when{margin-top:auto;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;color:var(--muted)}
+/* ── 查看更多案例（折叠） ── */
+.case-toggle{display:flex;align-items:center;gap:12px;width:100%;
+  background:rgba(237,240,243,.06);border:1px solid rgba(237,240,243,.18);
+  border-radius:var(--r-card);padding:18px 22px;color:var(--bone);
+  transition:background .3s var(--ease),border-color .3s var(--ease)}
+.case-toggle:hover{background:rgba(237,240,243,.1);border-color:rgba(245,183,0,.5)}
+.case-toggle b{font-size:15px;font-weight:600;letter-spacing:.02em}
+.case-toggle .count{margin-left:auto;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--bone-dim)}
+.case-toggle .chev{transition:transform .4s var(--ease);color:var(--accent)}
+.case-fold.open .case-toggle .chev{transform:rotate(180deg)}
+.case-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;
+  max-height:0;overflow:hidden;opacity:0;transition:max-height .7s var(--ease),opacity .5s var(--ease)}
+@media(max-width:880px){.case-grid{grid-template-columns:repeat(2,1fr)}}
+.case-fold.open .case-grid{max-height:5200px;opacity:1}
+.case-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-control);
+  background:rgba(237,240,243,.06);transition:transform .4s var(--ease);cursor:zoom-in}
+.case-grid img:hover{transform:scale(1.03)}
+
+/* ── 更多现场照片（网格，不折叠） ── */
+.on-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:1080px){.on-grid{grid-template-columns:repeat(2,1fr)}}
+.on-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-control);
+  background:var(--paper);box-shadow:0 1px 2px rgba(23,34,46,.05),0 8px 20px -8px rgba(23,34,46,.12);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);cursor:zoom-in}
+.on-grid img:hover{transform:scale(1.025);box-shadow:var(--shadow-card)}
+
+/* ── 图片点击放大（灯箱） ── */
+.zoom-wrap{position:relative;display:block;cursor:zoom-in;overflow:hidden}
+.zoom-badge{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;
+  background:rgba(10,14,19,.62);backdrop-filter:blur(5px);color:#fff;display:grid;place-items:center;
+  opacity:.85;z-index:3;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.zoom-badge svg{width:15px;height:15px;fill:currentColor}
+.zoom-wrap:hover .zoom-badge{opacity:1;transform:scale(1.12)}
+.zoom-tip{position:absolute;bottom:10px;left:50%;transform:translateX(-50%) translateY(4px);
+  background:rgba(10,14,19,.74);color:#fff;font-size:10px;letter-spacing:.12em;padding:5px 12px;border-radius:999px;
+  opacity:0;transition:opacity .3s var(--ease),transform .3s var(--ease);white-space:nowrap;pointer-events:none;z-index:3}
+.zoom-wrap:hover .zoom-tip{opacity:1;transform:translateX(-50%)}
+.zoom-wrap img{transition:transform .5s var(--ease)}
+.zoom-wrap:hover img{transform:scale(1.03)}
+
+.lightbox{position:fixed;inset:0;z-index:300;background:rgba(8,11,15,.95);backdrop-filter:blur(8px);
+  display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:8px;
+  box-shadow:0 30px 90px rgba(0,0,0,.65);animation:lbIn .4s var(--ease)}
+@keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.lb-close{position:absolute;top:18px;right:20px;width:44px;height:44px;border-radius:50%;
+  background:rgba(237,240,243,.14);color:#fff;display:grid;place-items:center;transition:background .3s,color .3s;z-index:2}
+.lb-close:hover{background:var(--accent);color:var(--ink)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+  background:rgba(237,240,243,.12);color:#fff;display:grid;place-items:center;transition:background .3s,color .3s;z-index:2}
+.lb-nav:hover{background:var(--accent);color:var(--ink)}
+.lb-nav.prev{left:18px}.lb-nav.next{right:18px}
+@media(max-width:680px){.lb-nav{display:none}}
+.lb-cap{position:absolute;left:0;right:0;bottom:28px;text-align:center;color:rgba(237,240,243,.78);
+  font-size:13px;letter-spacing:.05em;padding-inline:20px}
+.lb-count{position:absolute;top:22px;left:24px;color:rgba(237,240,243,.6);font-size:11px;
+  font-family:"Space Mono",monospace;letter-spacing:.2em}
 
 /* ── 联系 ── */
-.contact-sec{background:var(--world);color:var(--bone);position:relative;overflow:hidden}
-.contact-sec::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(237,240,243,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(237,240,243,.045) 1px,transparent 1px);
-  background-size:56px 56px}
-.contact-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,90px);align-items:center}
+.contact-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,90px);align-items:center}
 @media(max-width:900px){.contact-inner{grid-template-columns:1fr}}
 .contact-copy h2{font-size:var(--h1);font-weight:700;line-height:1.04;letter-spacing:-.015em}
 .contact-copy h2 em{font-style:normal;color:var(--accent)}
@@ -318,45 +283,6 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
 .totop{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.1em;color:var(--bone);
   transition:color .3s}
 .totop:hover{color:var(--accent)}
-
-/* ── 项目详情弹层 ── */
-.scrim{position:fixed;inset:0;background:rgba(10,14,19,.6);backdrop-filter:blur(4px);
-  opacity:0;pointer-events:none;transition:opacity .4s var(--ease);z-index:90}
-.scrim.on{opacity:1;pointer-events:auto}
-.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;
-  opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
-.modal.on{opacity:1;pointer-events:auto}
-.modal-panel{width:min(960px,100%);max-height:88vh;overflow-y:auto;background:var(--canvas);
-  border-radius:var(--r-shell);box-shadow:0 40px 120px rgba(10,14,19,.5);position:relative;
-  transform:translateY(26px) scale(.985);transition:transform .45s var(--ease)}
-.modal.on .modal-panel{transform:none}
-.modal-close{position:absolute;top:16px;right:16px;z-index:2;width:40px;height:40px;border-radius:50%;
-  background:rgba(15,22,32,.8);color:var(--bone);font-size:18px;display:grid;place-items:center;
-  transition:background .3s}
-.modal-close:hover{background:var(--accent);color:var(--ink)}
-.modal-hero{position:relative}
-.modal-hero img,.modal-hero video{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;background:#0A0E13}
-.modal-hero video{aspect-ratio:16/9}
-.modal-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,14,19,.55))}
-.modal-meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 36px 24px;color:var(--bone)}
-.modal-meta .mono{color:rgba(237,240,243,.7)}
-.modal-meta h3{font-size:clamp(22px,3vw,32px);font-weight:700;line-height:1.1;margin-top:8px}
-.modal-body{padding:34px 36px 40px}
-.modal-body h4{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);margin:30px 0 12px;font-family:"Space Mono",monospace}
-.modal-body h4:first-child{margin-top:0}
-.modal-body p{color:var(--ink2);font-size:14.5px;line-height:1.85}
-.duty{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink2)}
-.duty:last-child{border-bottom:0}
-.duty i{font-style:normal;color:var(--accent);font-family:"Space Mono",monospace;font-size:12px;padding-top:2px}
-.spec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-@media(max-width:640px){.spec-grid{grid-template-columns:1fr}}
-.spec-cell{background:var(--paper);border-radius:var(--r-control);padding:14px 16px}
-.spec-cell small{display:block;font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.14em;color:var(--muted);margin-bottom:5px}
-.spec-cell b{font-size:14px;font-weight:600}
-.outcome{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
-.outcome b{font-family:"Space Mono",monospace;font-size:22px;color:var(--ink);white-space:nowrap}
-.outcome span{color:var(--ink2)}
 
 /* ── 返回顶部 ── */
 .totop-btn{position:fixed;right:22px;bottom:22px;z-index:70;width:46px;height:46px;border-radius:50%;
@@ -384,41 +310,39 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
 <header id="nav">
   <a class="brand" href="#top"><b>李帅</b><span>PLC · AUTO</span></a>
   <nav id="menu">
-    <a href="#about">关于</a>
-    <a href="#skills">技能</a>
-    <a href="#projects">作品</a>
-    <a href="#experience">经历</a>
-    <a href="#certs">证书</a>
-    <a href="#contact">联系</a>
+    <a href="#plc">PLC</a>
+    <a href="#solidworks">SolidWorks</a>
+    <a href="#mcd">机电概念设计</a>
+    <a href="#onsite">现场照片</a>
   </nav>
   <div style="display:flex;align-items:center;gap:14px">
-    <a class="btn btn-solid nav-cta" href="#contact" style="padding:10px 22px;font-size:13px">联系我</a>
+    <a class="btn btn-solid nav-cta" href="https://aka.doubaocdn.com/s/l52TpRJXtS" download style="padding:10px 22px;font-size:13px">下载简历</a>
     <button class="hamb" id="hamb" aria-label="菜单"><i></i><i></i><i></i></button>
   </div>
 </header>
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero" id="top">
-  <div class="hero-media"><img src="https://aka.doubaocdn.com/s/m8dxsuaAKh" alt="工业电气控制柜阵列" width="2048" height="1152"></div>
+  <div class="hero-media"><img src="https://aka.doubaocdn.com/s/m8dxsuaAKh" alt="工业自动化控制" width="2048" height="1152"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow mono"><span class="dot"></span> PORTFOLIO · 2026 · PLC / ELECTRICAL / AUTOMATION</div>
+    <div class="hero-eyebrow mono"><span class="dot"></span> PORTFOLIO · 2026 · PLC / SOLIDWORKS / MCD</div>
     <h1 class="hero-title">李帅<em>.</em></h1>
     <div class="hero-role">
-      <h2>电气工程师 · 调试工程师</h2>
+      <h2>电气自动化工程师</h2>
       <span class="sep"></span>
-      <span class="mono">汽车服务工程 · 应届本科</span>
+      <span class="mono">PLC 编程 · 三维建模 · 机电概念设计</span>
     </div>
-    <p class="hero-claim">能独立完成从电气原理图、PLC 编程、HMI 组态到现场调试的完整闭环；会用 EPLAN、AutoCAD 出图，也能拿着万用表、示波器查线路。毕业前已完成分拣码垛机实训项目与两段企业实习，希望把每一段梯形图都变成稳定运行的设备。</p>
     <div class="hero-actions">
-      <a class="btn btn-solid" href="#projects">查看作品 <span>→</span></a>
+      <a class="btn btn-solid" href="#plc">查看作品 <span>→</span></a>
       <a class="btn btn-ghost" href="https://aka.doubaocdn.com/s/l52TpRJXtS" download>下载简历</a>
     </div>
     <div class="hero-spec">
       <span>S7-1200 / S7-1500</span>
       <span>TIA 博途</span>
-      <span>EPLAN / AutoCAD</span>
-      <span>MODBUS / PROFINET</span>
-      <span>KUKA / UG</span>
+      <span>SolidWorks</span>
+      <span>NX MCD</span>
+      <span>FactoryIO</span>
+      <span>MCGS / WinCC</span>
     </div>
   </div>
 </section>
@@ -426,92 +350,67 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
 <!-- ══════════ 跑马灯 ══════════ -->
 <div class="marquee">
   <div class="marquee-track">
-    <span>梯形图 LAD <em>✦</em> S7-200 SMART <em>✦</em> S7-1200 <em>✦</em> S7-1500 <em>✦</em> TIA 博途 <em>✦</em> WinCC Flexible <em>✦</em> MCGS <em>✦</em> EPLAN <em>✦</em> AutoCAD <em>✦</em> MODBUS RTU/TCP <em>✦</em> PROFINET <em>✦</em> RS-485 <em>✦</em> KUKA <em>✦</em> UG <em>✦</em> NX MCD <em>✦</em> Factory I/O <em>✦</em></span>
-    <span>梯形图 LAD <em>✦</em> S7-200 SMART <em>✦</em> S7-1200 <em>✦</em> S7-1500 <em>✦</em> TIA 博途 <em>✦</em> WinCC Flexible <em>✦</em> MCGS <em>✦</em> EPLAN <em>✦</em> AutoCAD <em>✦</em> MODBUS RTU/TCP <em>✦</em> PROFINET <em>✦</em> RS-485 <em>✦</em> KUKA <em>✦</em> UG <em>✦</em> NX MCD <em>✦</em> Factory I/O <em>✦</em></span>
+    <span>PLC 梯形图 <em>✦</em> S7-1200 <em>✦</em> S7-1500 <em>✦</em> TIA 博途 <em>✦</em> FactoryIO 虚拟仿真 <em>✦</em> PID 闭环控制 <em>✦</em> MCGS HMI <em>✦</em> SolidWorks 三维建模 <em>✦</em> 装配体爆炸视图 <em>✦</em> 工程图纸 <em>✦</em> NX MCD 机电概念设计 <em>✦</em> 数字样机 <em>✦</em> 运动仿真 <em>✦</em></span>
+    <span>PLC 梯形图 <em>✦</em> S7-1200 <em>✦</em> S7-1500 <em>✦</em> TIA 博途 <em>✦</em> FactoryIO 虚拟仿真 <em>✦</em> PID 闭环控制 <em>✦</em> MCGS HMI <em>✦</em> SolidWorks 三维建模 <em>✦</em> 装配体爆炸视图 <em>✦</em> 工程图纸 <em>✦</em> NX MCD 机电概念设计 <em>✦</em> 数字样机 <em>✦</em> 运动仿真 <em>✦</em></span>
   </div>
 </div>
 
-<!-- ══════════ 关于 ══════════ -->
-<section class="sec wrap" id="about">
-  <div class="about">
-    <figure class="about-media rv">
-      <img src="https://aka.doubaocdn.com/s/VxBI8jgew0" alt="现场调试工作照" width="1080" height="1440">
-      <figcaption class="mono">FIG.01 · 现场调试</figcaption>
-    </figure>
-    <div class="about-copy">
-      <span class="sec-tag mono">PROFILE · 关于我</span>
-      <h3 class="rv">把每一段程序<br>都写得<em>可追溯</em></h3>
-      <p class="rv">我是李帅，西华大学汽车服务工程（汽车产线与电气控制方向）应届毕业生。从课上的 PLC 原理，到实训台跑通一整套分拣码垛机控制；从在东方电气用 UG 拆解大型装备结构，到在德阳高端装备创新中心亲手布工业网线、理机柜线路。相比 "能跑就行"，我更在意程序可读、文档可查、维护可追溯。
-</p>
-      <p class="rv">掌握西门子 S7-1200/1500 与 TIA 博途，写梯形图也组态 HMI；懂 Modbus、PROFINET 组网，也敢拿着万用表查线路。看得懂机械结构，也写得好电气程序。目标岗位：调试工程师 / 电气工程师助理。</p>
-      <div class="stats rv">
-        <div class="stat"><b><span data-count="1">0</span><i>套</i></b><span>完整 PLC 实训项目</span></div>
-        <div class="stat"><b><span data-count="2">0</span><i>段</i></b><span>企业一线实习</span></div>
-        <div class="stat"><b><span data-count="4">0</span><i>项</i></b><span>证书与荣誉</span></div>
-        <div class="stat"><b><span data-count="6">0</span><i>类</i></b><span>核心技能覆盖</span></div>
-      </div>
-    </div>
+<!-- ══════════ PLC 栏目 ══════════ -->
+<section class="sec wrap" id="plc">
+  <div class="sec-head rv">
+    <span class="sec-tag mono">01 · PLC PROGRAMMING</span>
+    <h2>PLC 栏目 · 可编程逻辑控制</h2>
+    <p>从实训码垛机到虚拟仿真与 HMI 组态，每个作品附完整演示视频，点击即可播放。</p>
   </div>
+  <div class="vgrid" id="plcGrid"><!-- JS 渲染 --></div>
 </section>
 
-<!-- ══════════ 技能 ══════════ -->
-<section class="sec skills-sec" id="skills">
+<!-- ══════════ SolidWorks 栏目 ══════════ -->
+<section class="sec dark-sec" id="solidworks">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="sec-tag mono">CAPABILITIES · 核心技能</span>
-      <h2>能独立完成一条产线<br>从图纸到运行的每一步</h2>
-      <p>以下熟练度来自实训、课程与项目实践的累计使用时长，供参考。</p>
+      <span class="sec-tag mono">02 · SOLIDWORKS / UG 3D MODELING</span>
+      <h2>SolidWorks / UG 三维建模栏目</h2>
+      <p>零件建模 · 装配体 · 爆炸视图动画，完整展示三维设计能力。</p>
     </div>
-    <div class="skills-grid">
-      <div class="skills-list" id="skillList"><!-- JS 渲染 --></div>
-      <div class="skills-media rv">
-        <img src="https://aka.doubaocdn.com/s/2QVROtY1v5" alt="HMI 人机界面" width="2048" height="1536">
-        <div class="badge">HMI · 上位机</div>
-        <div class="stack">
-          <span>S7-1200</span><span>S7-1500</span><span>TIA 博途</span><span>WinCC</span><span>MCGS</span><span>EPLAN</span><span>MODBUS</span><span>PROFINET</span>
-        </div>
-      </div>
+    <div class="vgrid" id="swGrid"><!-- JS 渲染 --></div>
+    <div class="case-fold rv" id="caseFold">
+      <button class="case-toggle" id="caseToggle" aria-expanded="false" aria-controls="caseGrid">
+        <b>查看更多案例</b>
+        <span class="count">24 张</span>
+        <svg class="chev" width="16" height="16" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+      </button>
+      <div class="case-grid" id="caseGrid"><!-- JS 渲染 --></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 作品 ══════════ -->
-<section class="sec wrap" id="projects">
+<!-- ══════════ 机电概念设计栏目 ══════════ -->
+<section class="sec wrap" id="mcd">
   <div class="sec-head rv">
-    <span class="sec-tag mono">PROJECT ARCHIVE · 项目作品</span>
-    <h2>做过的事，比简历上的字<br>更能说明问题</h2>
-    <p>实训与仿真项目，点击查看方案细节、演示视频与我的分工。</p>
+    <span class="sec-tag mono">03 · MECHATRONIC CONCEPT DESIGN</span>
+    <h2>机电概念设计栏目</h2>
+    <p>西门子 NX MCD 机电一体化概念验证与运动仿真。</p>
   </div>
-  <div class="filters rv" id="filters"><!-- JS 动态生成 --></div>
-  <div class="projects" id="projectGrid"><!-- JS 渲染 --></div>
+  <div class="vgrid" id="mcdGrid"><!-- JS 渲染 --></div>
 </section>
 
-<!-- ══════════ 经历 ══════════ -->
-<section class="sec exp-sec" id="experience">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="sec-tag mono">TIMELINE · 教育经历</span>
-      <h2>从课本到车间，<br>每一步都算数</h2>
-    </div>
-    <div class="timeline" id="timeline"><!-- JS 渲染 --></div>
-  </div>
-</section>
-
-<!-- ══════════ 证书 ══════════ -->
-<section class="sec wrap" id="certs">
+<!-- ══════════ 更多现场照片 ══════════ -->
+<section class="sec wrap" id="onsite">
   <div class="sec-head rv">
-    <span class="sec-tag mono">CREDENTIALS · 证书认证</span>
-    <h2>证书证明能力，<br>项目证明证书</h2>
+    <span class="sec-tag mono">04 · ONSITE & FIELD RECORDS</span>
+    <h2>更多现场照片</h2>
+    <p>实训操作、设备调试与生产车间的现场记录。点击照片可放大查看。</p>
   </div>
-  <div class="certs" id="certGrid"><!-- JS 渲染 --></div>
+  <div class="on-grid" id="onsiteGrid"><!-- JS 渲染 --></div>
 </section>
 
 <!-- ══════════ 联系 ══════════ -->
-<section class="sec contact-sec" id="contact">
+<section class="sec dark-sec" id="contact" style="background:var(--world)">
   <div class="wrap contact-inner">
     <div class="contact-copy rv">
       <h2>期待与你的产线<br>一起<em>跑起来</em></h2>
-      <p>如果你在找一位既能对着 EPLAN 画图、也能拿着万用表下现场、还能把梯形图写到凌晨的电气自动化新人——我随时可以聊聊。</p>
+      <p>如果你在找一位能写梯形图、能建三维模型、也能做机电概念验证的电气自动化新人——我随时可以聊聊。</p>
       <div class="cta-row">
         <a class="btn btn-solid" href="https://aka.doubaocdn.com/s/l52TpRJXtS" download>下载简历</a>
         <a class="btn btn-ink-d" href="mailto:2358425277@qq.com">发邮件给我</a>
@@ -539,212 +438,141 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
   <div class="foot">
     <div style="display:flex;align-items:baseline;gap:14px">
       <b>李帅</b>
-      <span class="mono">PLC · ELECTRICAL · AUTOMATION · PORTFOLIO 2026</span>
+      <span class="mono">PLC · SOLIDWORKS · MCD · PORTFOLIO 2026</span>
     </div>
     <a class="totop" href="#top">回到顶部 ↑</a>
   </div>
 </footer>
 
-<!-- ══════════ 项目详情弹层 ══════════ -->
-<div class="scrim" id="scrim"></div>
-<aside class="modal" id="modal" role="dialog" aria-modal="true" aria-label="项目详情">
-  <div class="modal-panel" id="modalPanel"><!-- JS 渲染 --></div>
-</aside>
 <button class="totop-btn" id="totop" aria-label="回到顶部">
   <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
 </button>
 
+<!-- ══════════ 图片灯箱 ══════════ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <span class="lb-count" id="lbCount"></span>
+  <button class="lb-close" id="lbClose" aria-label="关闭">
+    <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+  </button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="上一张">
+    <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg>
+  </button>
+  <img class="lb-img" id="lbImg" alt="放大查看">
+  <button class="lb-nav next" id="lbNext" aria-label="下一张">
+    <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M90.34,53.66a8,8,0,0,1,11.32-11.32l80,80a8,8,0,0,1,0,11.32l-80,80a8,8,0,0,1-11.32-11.32L164.69,128Z"/></svg>
+  </button>
+  <span class="lb-cap" id="lbCap"></span>
+</div>
+
 <script>
 /* ══════════════════════════════════════════════════════════════
-   【模板数据区】替换这里的数组，页面内容即同步更新
+   【数据区】修改这里的数组，页面内容即同步更新
+   video 放 videos/ 目录；poster 封面放 assets/ 目录
    ══════════════════════════════════════════════════════════════ */
 
-/* ── 项目作品：一条 = 一个项目。img 放 assets/ 目录；video 为演示视频（放 videos/ 目录，可选） ── */
-const PROJECTS=[
- {id:"PRJ-01",cat:"实训项目",title:"全自动分拣码垛机控制系统开发",img:"https://aka.doubaocdn.com/s/vyn5PTaO4V",
+/* ── PLC 栏目：4 个作品，视频优先展示 ── */
+const PLC_PROJECTS=[
+ {id:"PRJ-01",title:"全自动分拣码垛机控制系统开发",video:"https://aka.doubaocdn.com/s/vejuOLI1Ow",poster:"https://aka.doubaocdn.com/s/60jNSSj418",
   tags:["S7-1200","伺服/步进","工业传感器"],
-  desc:"分析分拣码垛机工艺流程，完成 I/O 分配，以模块化思路搭建 PLC 程序框架，实现下料、输送检测、机械手抓取与多位置码垛全流程自动运行。",
-  bg:"实训项目：分拣码垛机需完成下料、输送检测、机械手抓取与多位置码垛的连续自动作业。难点在于动作时序、定位逻辑与多子程序之间的协调。",
-  arch:"西门子 S7-1200 PLC 为核心，配合伺服/步进驱动与工业传感器；按功能拆分为下料、输送检测、机械手抓取、多位置码垛等子程序模块。",
-  duty:["分析分拣码垛机工艺流程，完成 I/O 分配","以模块化思路搭建 PLC 程序框架，编写下料、输送检测、机械手抓取、多位置码垛功能子程序","调试动作时序与通讯，优化定位逻辑、解决程序时序卡顿，实现整套流程自动运行"],
-  specs:[["PLC 型号","S7-1200"],["驱动","伺服 / 步进驱动"],["传感","工业传感器"],["程序","模块化子程序架构"]],
-  outcomes:[["100%","整套流程自动运行（实训验证）"],["模块化","子程序框架便于扩展与维护"],["已解决","时序卡顿问题，定位逻辑优化"]]
- },
- {id:"PRJ-02",cat:"虚拟仿真",title:"智能仓库 FactoryIO 虚拟仿真调试",img:"https://aka.doubaocdn.com/s/UMaRJTLqLw",video:"https://aka.doubaocdn.com/s/cyW7lWjjRU",
+  desc:"分析分拣码垛机工艺流程，完成 I/O 分配与模块化 PLC 程序，实现下料、输送检测、机械手抓取与多位置码垛全流程自动运行。"},
+ {id:"PRJ-02",title:"智能仓库 FactoryIO 虚拟仿真调试",video:"https://aka.doubaocdn.com/s/cyW7lWjjRU",poster:"https://aka.doubaocdn.com/s/UMaRJTLqLw",
   tags:["S7-1500","FactoryIO","TIA 博途","PROFINET"],
-  desc:"用 FactoryIO 搭建立体仓库仿真场景，配合 TIA 博途编写输送线、堆垛机控制程序，完成入库、取货、码放的虚拟调试全流程。",
-  bg:"虚拟调试（数字孪生）在无实体设备的情况下验证系统逻辑：视频中右侧为 TIA 博途梯形图控制程序，左侧为含货架、传送带、堆垛机的 3D 仓储作业场景。",
-  arch:"西门子 S7-1500（CPU 1513-1 PN）+ TIA 博途编写控制逻辑；FactoryIO 提供立体仓库、托盘输送线、堆垛机等仿真模型，实现 PLC 程序与虚拟场景的实时联动。",
-  duty:["搭建 FactoryIO 立体仓库仿真场景（货架 / 传送带 / 堆垛机）","编写 PLC 控制程序，实现输送、取放、码放的步骤化控制逻辑","在线调试程序与仿真场景联动，验证仓储作业全流程逻辑"],
-  specs:[["控制器","S7-1500 (CPU 1513-1 PN)"],["平台","FactoryIO · TIA 博途"],["场景","立体仓库 · 堆垛机 · 输送线"],["方式","虚拟仿真调试"]],
-  outcomes:[["全流程","入库→取货→码放自动运行"],["数字孪生","无硬件完成逻辑验证"],["状态机","步骤化控制逻辑清晰可扩展"]]
- },
- {id:"PRJ-03",cat:"虚拟仿真",title:"水箱液位 PID 闭环控制系统",img:"https://aka.doubaocdn.com/s/9RKQREg51V",video:"https://aka.doubaocdn.com/s/hyG6rraT5v",
+  desc:"用 FactoryIO 搭建立体仓库仿真场景，配合 TIA 博途编写输送线、堆垛机控制程序，完成入库、取货、码放的虚拟调试全流程。"},
+ {id:"PRJ-03",title:"水箱液位 PID 闭环控制系统",video:"https://aka.doubaocdn.com/s/hyG6rraT5v",poster:"https://aka.doubaocdn.com/s/9RKQREg51V",
   tags:["S7-1200","PID","SIMATIC HMI","FactoryIO"],
-  desc:"基于 S7-1200 的液位定值控制：HMI 设定目标液位，PLC 经 PID 运算自动调节进出水阀门开度，配合 FactoryIO 3D 场景实时验证闭环控制效果。",
-  bg:"液位控制是过程控制中的经典对象。视频完整演示了 PLC 程序、HMI 人机交互与 3D 工业场景三者的联动：设定目标液位后，系统自动调节阀门，将液位稳定控制在设定值附近。",
-  arch:"S7-1200 + TIA 博途 PID 控制块实现液位闭环；SIMATIC HMI 仿真提供设定值输入与实时参数显示；FactoryIO 水箱场景呈现液位动态变化并与程序数据对应。",
-  duty:["编写液位采集与 PID 控制程序（设定值 / 过程值 / 阀开度）","组态 HMI 画面：目标液位设定、当前液位与阀门开度实时显示","联调 PLC-HMI-仿真场景，整定 PID 参数实现液位稳定控制"],
-  specs:[["控制器","S7-1200"],["算法","PID 定值控制"],["交互","SIMATIC HMI 仿真"],["场景","FactoryIO 水箱"]],
-  outcomes:[["稳定","液位闭环稳定于设定值"],["整定","比例 · 积分参数在线调节"],["联动","PLC + HMI + 仿真场景三端一致"]]
- },
- {id:"PRJ-04",cat:"HMI 组态",title:"昆仑通态 MCGS HMI 组态设计",img:"https://aka.doubaocdn.com/s/a3Rsyp52zV",video:"https://aka.doubaocdn.com/s/6GKovzdsF7",
+  desc:"基于 S7-1200 的液位定值控制：HMI 设定目标液位，PLC 经 PID 运算自动调节阀门开度，配合 FactoryIO 3D 场景实时验证闭环效果。"},
+ {id:"PRJ-04",title:"昆仑通态 MCGS HMI 组态设计",video:"https://aka.doubaocdn.com/s/6GKovzdsF7",poster:"https://aka.doubaocdn.com/s/a3Rsyp52zV",
   tags:["MCGS Pro","HMI","组态","上位机"],
-  desc:"使用 MCGS Pro 完成一套完整上位机监控工程：流程动画、状态监控、参数设置、实时/历史曲线、XY 曲线、报警浏览与报表输出，覆盖工业监控常见功能。",
-  bg:"组态工程覆盖工业监控的完整功能面：从个性化初始画面、工艺流程可视化，到仪表盘、趋势曲线、报警记录与数据报表，验证了界面可切换、数据可正常展示的完成度。",
-  arch:"MCGS Pro 组态环境 + 模拟运行；窗口架构包含首页、状态监控、参数设置、设备管理、仪表显示、实时/历史曲线、XY 曲线、报警浏览与报表输出。",
-  duty:["搭建首页与各功能窗口（状态监控、参数设置、设备管理、仪表显示）","配置实时 / 历史 / XY 曲线与报警浏览、报表输出功能","完成工程下载配置（网络通讯）并验证模拟运行"],
-  specs:[["平台","MCGS Pro 组态环境"],["画面","首页 · 监控 · 参数 · 曲线 · 报警 · 报表"],["通讯","网络通讯（目标机 200.200.200.190）"],["验证","模拟运行"]],
-  outcomes:[["全覆盖","流程动画 · 曲线 · 报警 · 报表全需求"],["可运行","工程下载与模拟运行验证通过"],["个性化","初始画面与仪表盘风格自定义"]]
- }
+  desc:"使用 MCGS Pro 完成一套完整上位机监控工程：流程动画、状态监控、实时/历史曲线、报警浏览与报表输出，覆盖工业监控常见功能。"}
 ];
 
-/* ── 核心技能：pct 为展示用熟练度 ── */
-const SKILLS=[
- {n:"PLC 编程",d:"S7-200 SMART / S7-1200 / S7-1500 · TIA 博途 · LAD 梯形图",pct:90},
- {n:"人机界面",d:"SIMATIC HMI（WinCC Flexible）· MCGS 触摸屏组态",pct:85},
- {n:"通讯协议",d:"Modbus RTU/TCP · PROFINET · RS-232/422/485",pct:80},
- {n:"电气设计",d:"EPLAN / AutoCAD 原理图与接线图 · 变频伺服调试",pct:85},
- {n:"现场实操",d:"万用表 / 示波器 / 兆欧表 · 传感器选型应用",pct:82},
- {n:"仿真工具",d:"NX MCD · Factory I/O · S7-PLCSIM / Advanced",pct:84}
-];
+/* ── SolidWorks 栏目：视频 + 案例 ── */
+const SW_SHOW={
+ title:"桌面机器手臂装配体爆炸视图动画",video:"https://aka.doubaocdn.com/s/UW0ARfrypu",poster:"https://aka.doubaocdn.com/s/szt6rTVU0l",
+ tags:["SolidWorks","装配体","爆炸视图","三维建模"],
+ desc:"使用 SolidWorks 完成多关节机械臂三维建模与装配，制作爆炸视图动画直观展示零件结构与装配逻辑；其余零件建模案例（支架、支座、带轮、扳手、圆盘等）见「查看更多案例」。"
+};
+const SW_DFDQ={
+ title:"东方电气复杂缸体三维建模",img:"https://aka.doubaocdn.com/s/VSVhNwW0wK",badge:"三维建模",
+ tags:["UG","东方电气","复杂缸体","工程图纸对照"],
+ desc:"参与东方电气复杂缸体零件的三维建模：依据工程图纸完成缸体实体建模，模型与图纸逐一对照，确保结构与尺寸准确。"
+};
+const SW_CASES=["https://aka.doubaocdn.com/s/38fqGXqAVq","https://aka.doubaocdn.com/s/yPmBoQbldH","https://aka.doubaocdn.com/s/M3RAkjlr8u","https://aka.doubaocdn.com/s/B3h9LEv4CE","https://aka.doubaocdn.com/s/1TmTYl8eup","https://aka.doubaocdn.com/s/O6ugZCtFZW","https://aka.doubaocdn.com/s/ESWiNv5uID","https://aka.doubaocdn.com/s/UwphZ614YB","https://aka.doubaocdn.com/s/zOt8mPxydG","https://aka.doubaocdn.com/s/gdAVE0lf5H","https://aka.doubaocdn.com/s/Bpn73Pnl46","https://aka.doubaocdn.com/s/EqgjUANnPr","https://aka.doubaocdn.com/s/fnUXUuzeuk","https://aka.doubaocdn.com/s/RlhXN6VT49","https://aka.doubaocdn.com/s/KZNaVMrIZl","https://aka.doubaocdn.com/s/XOigqRfxqc","https://aka.doubaocdn.com/s/9KaMezSi7g","https://aka.doubaocdn.com/s/5pJoQ9M5D0","https://aka.doubaocdn.com/s/KfA32H9qvy","https://aka.doubaocdn.com/s/aSDNIk6xCA","https://aka.doubaocdn.com/s/5p3EFituSe","https://aka.doubaocdn.com/s/f4vXRvIhKd","https://aka.doubaocdn.com/s/bUXjm25f2q","https://aka.doubaocdn.com/s/Q3IlSzqJVl"];
 
-/* ── 证书 ── */
-const CERTS=[
- {n:"达索 CSWP 认证",w:"SolidWorks 认证工程师",t:"在持",i:"certificate"},
- {n:"全国计算机二级",w:"MS Office 高级应用",t:"在持",i:"student"},
- {n:"国家励志奖学金",w:"国家级奖学金",t:"荣誉",i:"medal"},
- {n:"驾驶证 C1",w:"机动车驾驶资格",t:"在持",i:"lightning"}
-];
-
-/* ── 教育 / 经历（倒序，最新在上） ── */
-const TIMELINE=[
- {t:"2024.01 – 2024.02",n:"工业网络布线实习",d:"参与车间工业网络实施，完成工业网线布线、压接、标识及机柜理线；遵循现场布线规范，可做基础网络通断测试，了解 PROFINET 总线硬件基础。",loc:"德阳高端装备智能制造创新中心"},
- {t:"2023.07 – 2023.09",n:"三维建模实习生",d:"运用 UG 完成大型装备零部件、装配体建模；熟悉大型设备机械装配结构，能够结合机械结构理解电气控制逻辑。",loc:"东方电气"},
- {t:"应届本科",n:"汽车服务工程（汽车产线与电气控制方向）",d:"主修可编程控制器原理及应用（Siemens S7-1200/1500）、机电控制工程、电工电子技术、机械/电气制图、工业机器人编程基础（KUKA）、三维建模设计（UG、SolidWorks）、数字化产线工艺仿真（PDPS）、机电概念设计（NX MCD）、程序设计基础（C、C++）。",loc:"西华大学"}
-];
+/* ── 机电概念设计栏目 ── */
+const MCD_SHOW={
+ title:"西门子 NX 机电概念设计 · 自动化单元仿真",video:"https://aka.doubaocdn.com/s/5E9LmaCZrM",poster:"https://aka.doubaocdn.com/s/1J4aMFMkPt",
+ tags:["NX MCD","机电概念设计","数字样机","运动仿真"],
+ desc:"西门子 NX MCD（机电概念设计）搭建供料—加工自动化单元数字样机：完成机械结构、运动机构与自动化逻辑的机电一体化概念验证与运动仿真。"
+};
 
 /* ════════════════════════ 渲染 ════════════════════════ */
-const ICONS={
- lightning:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></svg>',
- certificate:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,136a8,8,0,0,1-8,8H72a8,8,0,0,1,0-16h48A8,8,0,0,1,128,136Zm-8-40H72a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Zm112,65.47V224A8,8,0,0,1,220,231l-24-13.74L172,231A8,8,0,0,1,160,224V200H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216a16,16,0,0,1,16,16V86.53a51.88,51.88,0,0,1,0,74.94ZM160,184V161.47A52,52,0,0,1,216,76V56H40V184Zm56-12a51.88,51.88,0,0,1-40,0v38.22l16-9.16a8,8,0,0,1,7.94,0l16,9.16Zm16-48a36,36,0,1,0-36,36A36,36,0,0,0,232,124Z"/></svg>',
- medal:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,96A88,88,0,1,0,72,163.83V240a8,8,0,0,0,11.58,7.16L128,225l44.43,22.21A8.07,8.07,0,0,0,176,248a8,8,0,0,0,8-8V163.83A87.85,87.85,0,0,0,216,96ZM56,96a72,72,0,1,1,72,72A72.08,72.08,0,0,1,56,96ZM168,227.06l-36.43-18.21a8,8,0,0,0-7.16,0L88,227.06V174.37a87.89,87.89,0,0,0,80,0ZM128,152A56,56,0,1,0,72,96,56.06,56.06,0,0,0,128,152Zm0-96A40,40,0,1,1,88,96,40,40,0,0,1,128,56Z"/></svg>',
- student:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M226.53,56.41l-96-32a8,8,0,0,0-5.06,0l-96,32A8,8,0,0,0,24,64v80a8,8,0,0,0,16,0V75.1L73.59,86.29a64,64,0,0,0,20.65,88.05c-18,7.06-33.56,19.83-44.94,37.29a8,8,0,1,0,13.4,8.74C77.77,197.25,101.57,184,128,184s50.23,13.25,65.3,36.37a8,8,0,0,0,13.4-8.74c-11.38-17.46-27-30.23-44.94-37.29a64,64,0,0,0,20.65-88l44.12-14.7a8,8,0,0,0,0-15.18ZM176,120A48,48,0,1,1,89.35,91.55l36.12,12a8,8,0,0,0,5.06,0l36.12-12A47.89,47.89,0,0,1,176,120ZM128,87.57,57.3,64,128,40.43,198.7,64Z"/></svg>',
- cpu:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M152,96H104a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V104A8,8,0,0,0,152,96Zm-8,48H112V112h32Zm88,0H216V112h16a8,8,0,0,0,0-16H216V56a16,16,0,0,0-16-16H160V24a8,8,0,0,0-16,0V40H112V24a8,8,0,0,0-16,0V40H56A16,16,0,0,0,40,56V96H24a8,8,0,0,0,0,16H40v32H24a8,8,0,0,0,0,16H40v40a16,16,0,0,0,16,16H96v16a8,8,0,0,0,16,0V216h32v16a8,8,0,0,0,16,0V216h40a16,16,0,0,0,16-16V160h16a8,8,0,0,0,0-16Zm-32,56H56V56H200v95.87s0,.09,0,.13,0,.09,0,.13V200Z"/></svg>',
- monitor:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40H48A24,24,0,0,0,24,64V176a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V64A24,24,0,0,0,208,40Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V64a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Zm-48,48a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,224Z"/></svg>',
- wifi:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M140,204a12,12,0,1,1-12-12A12,12,0,0,1,140,204ZM237.08,87A172,172,0,0,0,18.92,87,8,8,0,0,0,29.08,99.37a156,156,0,0,1,197.84,0A8,8,0,0,0,237.08,87ZM205,122.77a124,124,0,0,0-153.94,0A8,8,0,0,0,61,135.31a108,108,0,0,1,134.06,0,8,8,0,0,0,11.24-1.3A8,8,0,0,0,205,122.77Zm-32.26,35.76a76.05,76.05,0,0,0-89.42,0,8,8,0,0,0,9.42,12.94,60,60,0,0,1,70.58,0,8,8,0,1,0,9.42-12.94Z"/></svg>',
- gear:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"/></svg>',
- crosshair:'<svg class="ic" width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,120h-8.34A96.14,96.14,0,0,0,136,32.34V24a8,8,0,0,0-16,0v8.34A96.14,96.14,0,0,0,32.34,120H24a8,8,0,0,0,0,16h8.34A96.14,96.14,0,0,0,120,223.66V232a8,8,0,0,0,16,0v-8.34A96.14,96.14,0,0,0,223.66,136H232a8,8,0,0,0,0-16Zm-96,87.6V200a8,8,0,0,0-16,0v7.6A80.15,80.15,0,0,1,48.4,136H56a8,8,0,0,0,0-16H48.4A80.15,80.15,0,0,1,120,48.4V56a8,8,0,0,0,16,0V48.4A80.15,80.15,0,0,1,207.6,120H200a8,8,0,0,0,0,16h7.6A80.15,80.15,0,0,1,136,207.6ZM128,88a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152Z"/></svg>'
-};
-const SKILL_ICONS=["cpu","monitor","lightning","wifi","gear","crosshair"];
-
-document.getElementById('skillList').innerHTML=SKILLS.map((s,i)=>`
-  <div class="skill-item rv" style="--w:${s.pct}%">
-    <div class="skill-top">
-      ${ICONS[SKILL_ICONS[i]]}
-      <div><h3>${s.n}</h3><small>${s.d}</small></div>
-      <span class="pct">${s.pct}%</span>
-    </div>
-    <div class="bar"><i></i></div>
-  </div>`).join('');
-
-/* ── 项目筛选：从 PROJECTS 动态生成分类 ── */
-(function(){
-  const cats=['all',...new Set(PROJECTS.map(p=>p.cat))];
-  document.getElementById('filters').innerHTML=cats.map((c,i)=>{
-    const label=c==='all'?'全部 '+PROJECTS.length:c;
-    return `<button class="chip" aria-pressed="${i===0?'true':'false'}" data-f="${c}">${label}</button>`;
-  }).join('');
-})();
-
-document.getElementById('projectGrid').innerHTML=PROJECTS.map((p,i)=>`
-  <article class="pcard rv" data-c="${p.cat}" data-i="${i}" style="transition-delay:${(i%3)*80}ms">
-    <div class="pcard-media">
-      <span class="pcard-id mono">${p.id}</span>
-      <span class="pcard-cat">${p.cat}</span>
-      <img src="${p.img}" alt="${p.title}" loading="lazy">
-      ${p.video?'<span class="pcard-play ic">'+'<svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-24.32-14V40.35a16,16,0,0,1,24.32-14L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></svg> 视频演示</span>':''}
-    </div>
-    <div class="pcard-body">
+const playSVG='<svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-24.32-14V40.35a16,16,0,0,1,24.32-14L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></svg>';
+const zoomSVG='<svg viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Zm128,0a8,8,0,0,1-8,8H120v40a8,8,0,0,1-16,0V120H64a8,8,0,0,1,0-16h40V64a8,8,0,0,1,16,0v40h40A8,8,0,0,1,168,112Z"/></svg>';
+function zoomWrap(src,alt){
+  return `<span class="zoom-wrap"><img src="${src}" alt="${alt}" loading="lazy">
+    <span class="zoom-badge">${zoomSVG}</span><span class="zoom-tip">点击放大</span></span>`;
+}
+function vcard(p,i){
+  const media=p.video
+    ? `<div class="vmedia"><span class="vid">${playSVG} 视频演示</span>
+       <video src="${p.video}" controls preload="metadata" poster="${p.poster}" playsinline></video></div>`
+    : `<div class="vmedia img"><span class="vid">${p.badge||"作品展示"}</span>${zoomWrap(p.img,p.title)}</div>`;
+  return `<article class="vcard rv" style="transition-delay:${(i%2)*90}ms">${media}
+    <div class="vbody">
       <h3>${p.title}</h3>
       <p class="desc">${p.desc}</p>
       <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
     </div>
-    <div class="pcard-foot">
-      <span class="more">查看方案细节 ${'<svg class="ic" width="15" height="15" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>'}</span>
-      <span class="mono">${p.id}</span>
-    </div>
-  </article>`).join('');
-if(document.querySelectorAll('#projectGrid .pcard').length===1){document.getElementById('projectGrid').classList.add('solo');}
+  </article>`;
+}
+document.getElementById('plcGrid').innerHTML=PLC_PROJECTS.map((p,i)=>vcard(p,i)).join('');
+document.getElementById('swGrid').innerHTML=vcard(SW_SHOW,0)+vcard(SW_DFDQ,1);
+document.getElementById('mcdGrid').innerHTML=vcard(MCD_SHOW,0);
+document.getElementById('caseGrid').innerHTML=SW_CASES.map(src=>zoomWrap(src,"SolidWorks 建模案例")).join('');
 
-document.getElementById('certGrid').innerHTML=CERTS.map(c=>`
-  <div class="cert rv">
-    ${ICONS[c.i]}
-    <h3>${c.n}</h3>
-    <span class="who">${c.w}</span>
-    <span class="when">${c.t}</span>
-  </div>`).join('');
+/* 更多现场照片 */
+const ONSITE_PHOTOS=["https://aka.doubaocdn.com/s/3fZHglCGfe","https://aka.doubaocdn.com/s/to3zgbr2MB","https://aka.doubaocdn.com/s/IVyokrxUB4","https://aka.doubaocdn.com/s/CyJUknNtep","https://aka.doubaocdn.com/s/sX2Bgg4mkx","https://aka.doubaocdn.com/s/DRLI25R5fe","https://aka.doubaocdn.com/s/koP6kabVml","https://aka.doubaocdn.com/s/MPUzvJXhC1","https://aka.doubaocdn.com/s/2HxsESgKv6","https://aka.doubaocdn.com/s/VxErprhhvp","https://aka.doubaocdn.com/s/VWGsImwP7Y","https://aka.doubaocdn.com/s/rivazufOl2"];
+document.getElementById('onsiteGrid').innerHTML=ONSITE_PHOTOS.map(src=>zoomWrap(src,"现场照片")).join('');
 
-document.getElementById('timeline').innerHTML=TIMELINE.map(t=>`
-  <div class="tl-item rv">
-    <div class="tl-date">${t.t}</div>
-    <h3>${t.n}</h3>
-    <p>${t.d}</p>
-    <span class="loc">${t.loc}</span>
-  </div>`).join('');
-
-/* ════════════════ 交互 ════════════════ */
-/* 项目筛选：真实过滤 */
-document.getElementById('filters').addEventListener('click',e=>{
-  const c=e.target.closest('.chip'); if(!c) return;
-  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));
-  c.setAttribute('aria-pressed','true');
-  const f=c.dataset.f;
-  document.querySelectorAll('.pcard').forEach(card=>{
-    card.classList.toggle('hide', f!=='all' && card.dataset.c!==f);
-  });
+/* ════════════ 灯箱 ════════════ */
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),lbCount=document.getElementById('lbCount');
+let lbList=[],lbIdx=0;
+function showLb(i){
+  lbIdx=(i+lbList.length)%lbList.length;
+  lbImg.src=lbList[lbIdx].src;
+  lbCap.textContent=lbList[lbIdx].alt||'';
+  lbCount.textContent=String(lbIdx+1).padStart(2,'0')+' / '+String(lbList.length).padStart(2,'0');
+}
+function openLb(el){
+  lbList=[...document.querySelectorAll('.zoom-wrap img')].map(img=>({src:img.getAttribute('src'),alt:img.getAttribute('alt')}));
+  lbIdx=lbList.findIndex(x=>x.src===el.getAttribute('src'));
+  if(lbIdx<0)lbIdx=0;
+  showLb(lbIdx);
+  lb.classList.add('open');document.body.classList.add('locked');
+}
+function closeLb(){lb.classList.remove('open');document.body.classList.remove('locked');setTimeout(()=>{lbImg.removeAttribute('src');},350);}
+document.addEventListener('click',e=>{
+  const w=e.target.closest('.zoom-wrap img');
+  if(w){openLb(w);return;}
+  if(e.target.closest('#lbClose')||e.target===lb)closeLb();
+  if(e.target.closest('#lbPrev'))showLb(lbIdx-1);
+  if(e.target.closest('#lbNext'))showLb(lbIdx+1);
+});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowRight')showLb(lbIdx+1);
+  if(e.key==='ArrowLeft')showLb(lbIdx-1);
 });
 
-/* 项目详情弹层 */
-const modal=document.getElementById('modal'),scrim=document.getElementById('scrim'),
-      panel=document.getElementById('modalPanel');
-function openModal(i){
-  const p=PROJECTS[i];
-  panel.innerHTML=`
-    <div class="modal-hero">${p.video
-      ?`<video src="${p.video}" controls autoplay muted playsinline preload="metadata" poster="${p.img}"></video>`
-      :`<img src="${p.img}" alt="${p.title}">`}
-      <div class="modal-meta">
-        <span class="mono">${p.id} · ${p.cat}</span>
-        <h3>${p.title}</h3>
-      </div>
-    </div>
-    <button class="modal-close" aria-label="关闭">×</button>
-    <div class="modal-body">
-      <h4>项目背景</h4><p>${p.bg}</p>
-      <h4>方案架构</h4><p>${p.arch}</p>
-      <h4>我的职责</h4>
-      ${p.duty.map(d=>`<div class="duty"><i>▸</i><span>${d}</span></div>`).join('')}
-      <h4>技术参数</h4>
-      <div class="spec-grid">${p.specs.map(s=>`<div class="spec-cell"><small>${s[0]}</small><b>${s[1]}</b></div>`).join('')}</div>
-      <h4>项目成果</h4>
-      ${p.outcomes.map(o=>`<div class="outcome"><b>${o[0]}</b><span>${o[1]}</span></div>`).join('')}
-    </div>`;
-  panel.querySelector('.modal-close').onclick=closeModal;
-  modal.classList.add('on');scrim.classList.add('on');
-  document.body.classList.add('locked');
-}
-function closeModal(){
-  const v=panel.querySelector('video'); if(v) v.pause();
-  modal.classList.remove('on');scrim.classList.remove('on');
-  document.body.classList.remove('locked');
-}
-document.getElementById('projectGrid').addEventListener('click',e=>{
-  const card=e.target.closest('.pcard'); if(!card) return;
-  openModal(+card.dataset.i);
+/* 查看更多案例：展开 / 收起 */
+const caseFold=document.getElementById('caseFold');
+document.getElementById('caseToggle').addEventListener('click',()=>{
+  const open=caseFold.classList.toggle('open');
+  document.getElementById('caseToggle').setAttribute('aria-expanded',open);
 });
-scrim.onclick=closeModal;
-addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
 /* 导航：滚动高亮 + 吸顶 + 返回顶部 */
 const nav=document.getElementById('nav'),totop=document.getElementById('totop');
@@ -753,7 +581,6 @@ const navLinks=[...document.querySelectorAll('nav a')];
 addEventListener('scroll',()=>{
   nav.classList.toggle('solid',scrollY>window.innerHeight*.78);
   totop.classList.toggle('show',scrollY>600);
-  /* scrollspy */
   let cur='';
   sections.forEach(s=>{if(scrollY>=s.offsetTop-160)cur=s.id;});
   navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
@@ -776,23 +603,6 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
 }),{threshold:.16,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-/* 技能条：滚动进入后展开 */
-const sio=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('in');sio.unobserve(e.target);}
-}),{threshold:.4});
-document.querySelectorAll('.skill-item').forEach(el=>sio.observe(el));
-
-/* 数字滚动 */
-const cio=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting) return; cio.unobserve(e.target);
-  const el=e.target,end=+el.dataset.count,t0=performance.now(),dur=1200;
-  (function step(t){
-    const k=Math.min(1,(t-t0)/dur),v=Math.round(end*(1-Math.pow(1-k,3)));
-    el.textContent=v; if(k<1) requestAnimationFrame(step);
-  })(t0);
-}),{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 </script>
 </body>
 </html>
