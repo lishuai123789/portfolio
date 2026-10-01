@@ -543,7 +543,7 @@ function zoomWrap(src,alt){
 function vcard(p,i){
   const media=p.video
     ? `<div class="vmedia"><span class="vid">${playSVG} 视频演示</span>
-       <video src="${p.video}" controls preload="metadata" poster="${p.poster}" playsinline title="${p.title}"></video></div>`
+       <video src="${p.video}" controls preload="metadata" poster="${p.poster}" playsinline title="${p.title}" muted></video></div>`
     : `<div class="vmedia img"><span class="vid">${p.badge||"作品展示"}</span>${zoomWrap(p.img,p.title)}</div>`;
   return `<article class="vcard rv" style="transition-delay:${(i%2)*90}ms">${media}
     <div class="vbody">
