@@ -338,7 +338,7 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
     <a href="#contact">联系我</a>
   </nav>
   <div style="display:flex;align-items:center;gap:14px">
-    <a class="btn btn-solid nav-cta" href="resume.pdf" download style="padding:10px 22px;font-size:13px">下载简历</a>
+    <a class="btn btn-solid nav-cta" href="resume.pdf" download="李帅-电气自动化工程师-简历.pdf" style="padding:10px 22px;font-size:13px">下载简历</a>
     <button class="hamb" id="hamb" aria-label="菜单"><i></i><i></i><i></i></button>
   </div>
 </header>
@@ -356,7 +356,7 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
     </div>
     <div class="hero-actions">
       <a class="btn btn-solid" href="#plc">查看作品 <span>→</span></a>
-      <a class="btn btn-ghost" href="resume.pdf" download>下载简历</a>
+      <a class="btn btn-ghost" href="resume.pdf" download="李帅-电气自动化工程师-简历.pdf">下载简历</a>
     </div>
     <div class="hero-spec">
       <span>S7-1200 / S7-1500</span>
@@ -434,7 +434,7 @@ footer{background:var(--ink);color:rgba(237,240,243,.55);padding:52px var(--gut)
       <h2>期待与你的产线<br>一起<em>跑起来</em></h2>
       <p>如果你在找一位能写梯形图、能建三维模型、也能做机电概念验证的电气自动化新人——我随时可以聊聊。</p>
       <div class="cta-row">
-        <a class="btn btn-solid" href="resume.pdf" download>下载简历</a>
+        <a class="btn btn-solid" href="resume.pdf" download="李帅-电气自动化工程师-简历.pdf">下载简历</a>
         <a class="btn btn-ink-d" href="mailto:2358425277@qq.com">发邮件给我</a>
         <button class="btn btn-ink-d" id="copyMail" type="button">复制邮箱</button>
       </div>
@@ -540,7 +540,7 @@ function zoomWrap(src,alt){
 function vcard(p,i){
   const media=p.video
     ? `<div class="vmedia"><span class="vid">${playSVG} 视频演示</span>
-       <video src="${p.video}" controls preload="metadata" poster="${p.poster}" playsinline title="${p.title}" muted></video></div>`
+       <video src="${p.video}" controls preload="metadata" poster="${p.poster}" playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" title="${p.title}" muted></video></div>`
     : `<div class="vmedia img"><span class="vid">${p.badge||"作品展示"}</span>${zoomWrap(p.img,p.title)}</div>`;
   return `<article class="vcard rv" style="transition-delay:${(i%2)*90}ms">${media}
     <div class="vbody">
